@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.growingTextView.shouldFlashIndicateOnTextChange = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -43,6 +44,8 @@ class ViewController: UIViewController {
         self.growingTextView.placeholderAttributedText = NSAttributedString(string: "Placeholder text",
                                                                             attributes: [NSAttributedStringKey.font: self.growingTextView.textView.font!,
                                                                                          NSAttributedStringKey.foregroundColor: UIColor.gray
+                                                                                
+                                                                
             ]
         )
         
@@ -54,6 +57,12 @@ class ViewController: UIViewController {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.growingTextView.textView.text = "bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla blabla blabla bla bla blabla blabla blabla bla"
+        self.growingTextView.shouldFlashIndicateOnTextChange = true
     }
     
     
